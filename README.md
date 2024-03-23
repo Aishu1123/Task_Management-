@@ -4,13 +4,11 @@
 
 Welcome to the documentation for the Task Management Application backend API. This API allows users to manage tasks efficiently. It is built using React, Node.js, Express.js, and MySQL (MERN stack) as the backend stack.
 
-
 ## Base URL
 The base URL for all API endpoints is: `https://localhost:3000/`
 
 ## Authentication
-To access protected routes, users need to register and log in. Authentication is done via JWT token-based authorization.
-
+To access protected routes, users need to register and log in. Authentication is done via JWT tion.
 
 ## Technical Stack
 
@@ -25,8 +23,6 @@ To access protected routes, users need to register and log in. Authentication is
   - Express
   - MySQL
   - Sequelize
-
-
 
 ## Installation
 
