@@ -7,13 +7,16 @@ const taskRouter = express.Router();
 
 // Get all tasks
 taskRouter.get('/',auth, async (req, res) => {
+  console.log("user DEDO ID",req.body.userID)
   try {
-    const tasks = await TaskModel.findAll();
-    res.json(tasks);
+    const tasks = await TaskModel.findByPk(req.body.userID);
+    // console.log("user DEDO ID",req.userID)
+    res.json({tasks});
   } catch (error) {
-  
+  console.log(error)
     res.status(500).json({ message: 'Server error' });
   }
+
 });
 
 
@@ -35,12 +38,12 @@ taskRouter.get('/:id',auth, async (req, res) => {
 
 // Create a new task
 taskRouter.post('/',auth, async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description,userID } = req.body;
   try {
-    const newTask = await TaskModel.create({ title, description });
+    const newTask = await TaskModel.create({ title, description,userID });
     res.status(201).json(newTask);
   } catch (error) {
-  
+  console.log(error);
     res.status(500).json({ message: 'Server error' });
   }
 });
