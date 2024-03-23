@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import {
@@ -20,55 +20,53 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 const TaskCard = ({ taskID, title, description, getTasks }) => {
+  const [updatedTitle, setUpdatedTitle] = useState(title);
+  const [updatedDescription, setUpdatedDescription] = useState(description);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log(taskID, title, description);
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3000/task/${taskID}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      console.log("Task deleted successfully");
+      getTasks();
+    } catch (error) {
+      console.error("Error deleting Task:", error);
+    }
+  };
 
-    const [updatedTitle, setUpdatedTitle] = useState(title);
-    const [updatedDescription, setUpdatedDescription] = useState(description);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(taskID,title,description);
-    const handleDelete = async () => {
-      try {
-        await axios.delete(`http://localhost:3000/task/${taskID}`, {
+  const handleEdit = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleUpdate = async () => {
+    try {
+      await axios.put(
+        `http://localhost:3000/task/${taskID}`,
+        {
+          title: updatedTitle,
+          description: updatedDescription,
+        },
+        {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        });
-        console.log("Task deleted successfully");
-        getTasks();
-      } catch (error) {
-        console.error("Error deleting Task:", error);
-      }
-    };
-  
-    const handleEdit = () => {
-      setIsModalOpen(true);
-    };
-  
-    const handleUpdate = async () => {
-      try {
-        await axios.put(
-          `http://localhost:3000/task/${taskID}`,
-          {
-            title: updatedTitle,
-            description: updatedDescription,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        console.log("Task updated successfully");
-        setIsModalOpen(false);
-        getTasks();
-      } catch (error) {
-        console.error("Error updating Task:", error);
-      }
-    };
-
+        }
+      );
+      console.log("Task updated successfully");
+      setIsModalOpen(false);
+      getTasks();
+    } catch (error) {
+      console.error("Error updating Task:", error);
+    }
+  };
 
   return (
     <>
-    <Box
+      <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -77,12 +75,20 @@ const TaskCard = ({ taskID, title, description, getTasks }) => {
         borderRadius="1rem"
         bg={useColorModeValue("white", "gray.700")}
       >
-        <Text fontWeight="bold" fontSize="lg">
-          {title}
-        </Text>
-        <Text textAlign="center" w={{ base: "80%", md: "100%" }} mt={2}>
-          {description}
-        </Text>
+        <Flex direction="column">
+          <FormLabel fontWeight="bold">Title:</FormLabel>
+          <Input
+            type="text"
+            value={updatedTitle}
+            onChange={(e) => setUpdatedTitle(e.target.value)}
+            mb={4} 
+          />
+          <FormLabel fontWeight="bold">Description:</FormLabel>
+          <Textarea
+            value={updatedDescription}
+            onChange={(e) => setUpdatedDescription(e.target.value)}
+          />
+        </Flex>
         <Flex mt={4}>
           <Button colorScheme="blue" mr={2} onClick={handleEdit}>
             Edit
@@ -123,7 +129,7 @@ const TaskCard = ({ taskID, title, description, getTasks }) => {
         </Modal>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default TaskCard
+export default TaskCard;

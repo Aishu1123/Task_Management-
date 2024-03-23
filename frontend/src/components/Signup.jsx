@@ -59,16 +59,16 @@ const Signup = () => {
     }
   };
   return (
-    <div className="bg-[#7f7b7b] flex h-[38rem] items-center">
+    <div className=" flex h-[38rem] items-center">
       <Container>
         <Box
           p={"2rem"}
           bg={"white"}
           borderRadius={10}
-          boxShadow={"0px 9px 88px -1px rgba(157,159,119,0.89)"}
+          boxShadow={"1px 7px 9px 1px"}
         >
           <form onSubmit={handleSubmit}>
-            <Heading as={"h1"} color={"green"} textAlign={"center"} mb={4}>
+            <Heading as={"h1"} color={"#596e79"} textAlign={"center"} mb={4}>
               SignUp
             </Heading>
             <FormControl>
@@ -95,13 +95,13 @@ const Signup = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button type="submit" colorScheme="green" width="full">
+                <Button type="submit" color="black" width="full">
                   Sign Up
                 </Button>
 
                 <Text textAlign={"center"}>
                   Already have an account{" "}
-                  <Text as={Link} to="/login" color="green" fontWeight="bold">
+                  <Text as={Link} to="/login" color="black" fontWeight="bold">
                     Login
                   </Text>
                 </Text>

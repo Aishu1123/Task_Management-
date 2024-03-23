@@ -1,6 +1,6 @@
 import { Box, Button, Heading, Image } from "@chakra-ui/react";
 4;
-import Img from "../assets/homePageImg.png";
+import Img from "../assets/banner.png";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <Box
-        className="bg-[#7f7b7b] flex justify-center"
+        className="flex justify-center"
         mt={{ base: "0", md: "4rem" }}
       >
         <Box
@@ -20,7 +20,7 @@ const Home = () => {
           w={{ base: "100%", md: "80%" }}
           p={"2rem"}
         >
-          <Box>
+          <Box >
             <Image src={Img} alt="Notes" />
           </Box>
           <Box width={{ base: "100%", md: "40%" }}>
@@ -28,7 +28,7 @@ const Home = () => {
             <Heading
               as={"h1"}
               fontSize={{ base: "2rem", md: "3rem" }}
-              color={"white"}
+              color={"#596e79"}
             >
               The simplest way to manage tasks
             </Heading>
@@ -42,8 +42,8 @@ const Home = () => {
                     bg={"white"}
                     p={"1.3rem 3rem"}
                     fontWeight={"bold"}
-                   
-                    _hover={{ bg: "#90ee90", color: "#091e17" }}
+                    border={" 1px solid black"}
+                    _hover={{ bg: "#aedadd", color: "#596e79" }}
                   >
                     Dashboard
                   </Button>
@@ -55,11 +55,11 @@ const Home = () => {
                   <Button
                     mt={"2rem"}
                     fontSize={"1.3rem"}
-                    color={"black"}
+                    color={"#596e79"}
                     bg={"white"}
                     p={"1.3rem 3rem"}
-                    
-                    _hover={{ bg: "#90ee90", color: "#091e17" }}
+                    border={" 1px solid black"}
+                    _hover={{ bg: "#aedadd", color: "#596e79" }}
                   >
                     SingUp
                   </Button>

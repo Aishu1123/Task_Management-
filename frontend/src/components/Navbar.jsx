@@ -28,8 +28,8 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post(
-        "https://simple-notes-backend.onrender.com/users/logout",
+      const response = await axios.get(
+        "http://localhost:3000/user/logout",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -50,7 +50,7 @@ const Navbar = () => {
         <Flex
           p={"1.5rem"}
           boxShadow="base"
-          bg={"#091e17"}
+          bg={"#596e79"}
           display={"flex"}
           alignItems={"center"}
           direction={{ base: "row", md: "row" }}
@@ -61,8 +61,9 @@ const Navbar = () => {
                 as="h2"
                 fontSize={{ base: "1.6rem", md: "2rem" }}
                 color={"white"}
+                ml={"80px"}
               >
-                Task
+                TaskTrackr
               </Heading>
             </Link>
           </Box>
@@ -80,13 +81,15 @@ const Navbar = () => {
               gap={4}
               display={{ base: "none", md: "flex" }}
               justifyContent="space-around"
+              mr={"80px"}
             >
               <Link to="/">
                 <Button
                   fontSize={"1.3rem"}
                   color={"white"}
                   bg={"transparent"}
-                  _hover={{ bg: "transparent", color: "#90ee90" }}
+                  _hover={{ bg: "transparent", color: "#aedadd" }}
+                 
                 >
                   Home
                 </Button>
@@ -99,7 +102,7 @@ const Navbar = () => {
                       fontSize={"1.3rem"}
                       color={"white"}
                       bg={"transparent"}
-                      _hover={{ bg: "transparent", color: "#90ee90" }}
+                      _hover={{ bg: "transparent", color: "#aedadd" }}
                     >
                       Dashboard
                     </Button>
@@ -110,7 +113,7 @@ const Navbar = () => {
                     color={"white"}
                     bg={"transparent"}
                     onClick={handleLogout}
-                    _hover={{ bg: "transparent", color: "#90ee90" }}
+                    _hover={{ bg: "transparent", color: "#aedadd" }}
                   >
                     Logout
                   </Button>
@@ -122,7 +125,7 @@ const Navbar = () => {
                       fontSize={"1.3rem"}
                       color={"white"}
                       bg={"transparent"}
-                      _hover={{ bg: "transparent", color: "#90ee90" }}
+                      _hover={{ bg: "transparent", color: "#aedadd" }}
                     >
                       Login
                     </Button>
@@ -132,7 +135,7 @@ const Navbar = () => {
                       fontSize={"1.3rem"}
                       color={"white"}
                       bg={"transparent"}
-                      _hover={{ bg: "transparent", color: "#90ee90" }}
+                      _hover={{ bg: "transparent", color: "#aedadd" }}
                     >
                       SingUp
                     </Button>
@@ -208,32 +211,4 @@ const Navbar = () => {
 
 export default Navbar;
 
-// {auth ? (
-//   <>
-//     <Box>{name}</Box>
-//     <Link to={"/"}>
-//       <Button
 
-//       >
-//         Log out
-//       </Button>
-//     </Link>
-//   </>
-// ) : (
-//   <>
-//     <Link to="/signup">
-//       <Button
-
-//       >
-//         Sign Up
-//       </Button>
-//     </Link>
-//     <Link to="/login">
-//       <Button
-
-//       >
-//         Login
-//       </Button>
-//     </Link>
-//   </>
-// )}

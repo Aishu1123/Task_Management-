@@ -2,6 +2,7 @@ const express = require('express');
 const UserModel = require('../Model/user.model');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const { blacklist } = require('../Config/blacklist');
 require('dotenv').config();
 
 const userRouter = express.Router();
@@ -44,5 +45,13 @@ userRouter.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+// user logout
+
+userRouter.get('/logout',(req,res)=> {
+    const token = req.headers.authorization?.split(" ")[1];
+    blacklist.push(token);
+    res.status(200).send({msg:"Logout successsful"});
+})
 
 module.exports = { userRouter };
