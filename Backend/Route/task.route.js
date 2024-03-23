@@ -51,7 +51,7 @@ taskRouter.post('/',auth, async (req, res) => {
 
 
 
-// Update an existing task
+// Update an existing task using id
 taskRouter.put('/:id', auth,async (req, res) => {
   const taskId = req.params.id;
   console.log("<<<<<<",taskId)
@@ -74,7 +74,7 @@ taskRouter.put('/:id', auth,async (req, res) => {
 
 
 
-// Delete a task
+// Delete a task using id
 taskRouter.delete('/:id',auth, async (req, res) => {
   const taskId = req.params.id;
   try {
