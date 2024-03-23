@@ -1,69 +1,152 @@
-#  Task Management Application
+# Task Management Application Documentation
 
-## Objective
+## Overview
 
-The objective of this assignment is to create a web-based task management application using the MERN stack (MySQL, Express.js, React, Node.js) that allows users to add, update, delete, and view tasks.
+Welcome to the documentation for the Task Management Application backend API. This API allows users to manage tasks efficiently. It is built using React, Node.js, Express.js, and MySQL (MERN stack) as the backend stack.
 
-## Requirements
 
-### Backend (Node.js and Express.js):
+## Base URL
+The base URL for all API endpoints is: `https://localhost:3000/`
 
-- Set up a Node.js server using Express.js.
-- Create RESTful APIs for CRUD (Create, Read, Update, Delete) operations on tasks.
-- Implement validation for input data (e.g., task title and description).
-- Use MySQL as the database to store task information.
-- Implement error handling for API requests.
+## Authentication
+To access protected routes, users need to register and log in. Authentication is done via JWT token-based authorization.
 
-### Frontend (React):
 
-- Create a React application for the frontend.
-- Implement a user interface to:
-  - Display a list of tasks.
-  - Add a new task with a title and description.
-  - Update an existing task (title and description).
-  - Delete a task.
-- Implement form validation for adding and updating tasks.
-- Create a user registration, login & profile.
-  - Store the data into the database after registration.
-  - Create a profile section to display user details with update features.
-  - Get user data from the DB, store it into redux, and use it across the application.
+## Technical Stack
 
-### User Authentication:
+- **Frontend:**
+  - Tailwind
+  - ChaKra-UI
+  - React
+  - Html-CSS
 
-- Implement user authentication using JSON Web Tokens (JWT) or any other preferred method.
-- Allow users to sign up and log in.
-- Ensure that only authenticated users can create, update, and delete tasks.
+- **Backend:**
+  - Node.js
+  - Express
+  - MySQL
+  - Sequelize
 
-### Styling:
 
-- Apply CSS or use a CSS framework (Tailwind/React Bootstrap) to style your application and make it user-friendly.
 
-### Deployment:
+## Installation
 
-- Deploy the application to a platform like Heroku, AWS, or any other of your choice.
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   ```
+3. Navigate to the project directory:
+   ```
+   cd Task_Management-
 
-## Additional Guidelines
+   ```
+5. Install dependencies:
+   - Backend:
+   ```
+    cd Backend
+    npm install
+   ````
+   - Frontend:
+   ```
+    cd Frontend
+     npm install
+   ```
+6. Start the backend server:
+   ```
+   cd Backend
+   npm run server
+   ```
+ 5.Start the Frontend server:
+   ```
+   cd Frontend
+   npm run dev
+   ```
+## API Endpoints
 
-- Use best practices for code organization and folder structure.
-- Implement proper error handling on both the frontend and backend.
-- Use Git for version control and make regular commits with descriptive messages.
-- Write clear and concise documentation on how to set up and run the application.
+### Register
+- **Method:** POST
+- **Endpoint:** `/user/register`
+- **Description:** Allows users to register. Hashes the password on store.
+- **Request Body:**
+  ```json
+  {
+    "name": "Aishwarya",
+    "email": "aishwarya@example.com",
+    "password": "1234"
+   }
 
-## Submission
+ ### Login
+- **Method:** POST
+- **Endpoint:** `/user/login`
+- **Description:** Allows users to login. Hashes the password on store.
+- **Request Body:**
+  ```json
+  {
+    "email": "aishwarya@example.com",
+    "password": "1234"
+  }
 
-- Share your project’s code repository (e.g., GitHub) with the assignment’s reviewer.
-- Provide instructions on how to run the application locally.
+ ### Logout
+- **Method:** GET
+- **Endpoint:** `/user/logout`
+- **Description:** User Logged out. token push in blacklist[]
+- **Request Body:**
+  ```json
+  {
+  "token":"saddfsfhgafcggggh"
+  }
 
-## Evaluation Criteria
+### Get All Tasks of Logged in User
+- **Method:** GET
+- **Endpoint:** `/task`
+- **Description:** Return only logged in user's tasks list array .
+- **Request Body:**
+  ```json
+  {
+  "title": "Task1",
+  "description": "Abcd"
+  }
 
-Your assignment will be evaluated based on the following criteria:
+### Get Task by ID
+- **Method:** GET
+- **Endpoint:** `/task/:id`
+- **Description:** Returns the details of a specific task identified by its ID.
 
-- **Functionality:** Does the application perform all the required tasks (CRUD operations on tasks)?
-- **Code Quality:** Is the code well-organized, readable, and maintainable?
-- **User Interface:** Is the user interface intuitive and responsive?
-- **Error Handling:** Does the application handle errors gracefully?
-- **Documentation:** Is there clear documentation on how to set up and run the application?
+- **Request Body:**
+  - **Response:** `task Object`
+ 
+### Add New Task
+- **Method:** POST
+- **Endpoint:** `/task`
+- **Description:** Allows user to add new task 
+- **Request Body:**
+  ```json
+  {
+    "title": "Task Title",
+  "description": "Task Content",
+  }
 
-**Note:**
-- For databases, MySQL is recommended, not mandatory.
-- For frontend, Tailwind is recommended, not mandatory.
+ ### Update Task by ID
+- **Method:** PUT
+- **Endpoint:** `/task/:id`
+- **Description:** Allows user to update the details of a specific task identified by its ID. 
+- **Request Body:**
+  - **Response:** `Updated Array of task object`
+
+ ### Delete Task by ID
+- **Method:** DELETE
+- **Endpoint:** `/task/:id`
+- **Description:** Allows user to delete the details of a specific task identified by its ID. 
+- **Request Body:**
+  - **Response:** `Delete Task Object`
+
+## Error Handling
+
+The API handles errors gracefully and returns appropriate HTTP status codes and error messages.
+
+## Authentication and Authorization
+
+Authentication is required for accessing certain endpoints. Unauthorized access will result in a 401 status code.
+
+
+
+
