@@ -9,9 +9,9 @@ const taskRouter = express.Router();
 taskRouter.get('/',auth, async (req, res) => {
   console.log("user DEDO ID",req.body.userID)
   try {
-    // const tasks = await TaskModel.findByPk(req.body.userID);
+    
     const tasks = await TaskModel.findAll({where :{userID:req.body.userID}});
-    // console.log("user DEDO ID",req.userID)
+    
     res.json({tasks});
   } catch (error) {
   console.log(error)
