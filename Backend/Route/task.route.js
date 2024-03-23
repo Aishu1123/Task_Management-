@@ -9,7 +9,8 @@ const taskRouter = express.Router();
 taskRouter.get('/',auth, async (req, res) => {
   console.log("user DEDO ID",req.body.userID)
   try {
-    const tasks = await TaskModel.findByPk(req.body.userID);
+    // const tasks = await TaskModel.findByPk(req.body.userID);
+    const tasks = await TaskModel.findAll({where :{userID:req.body.userID}});
     // console.log("user DEDO ID",req.userID)
     res.json({tasks});
   } catch (error) {
@@ -53,9 +54,11 @@ taskRouter.post('/',auth, async (req, res) => {
 // Update an existing task
 taskRouter.put('/:id', auth,async (req, res) => {
   const taskId = req.params.id;
+  console.log("<<<<<<",taskId)
   const { title, description } = req.body;
   try {
     const task = await TaskModel.findByPk(taskId);
+    
     if (!task) {
       return res.status(404).json({ message: 'Task not found' });
     }
