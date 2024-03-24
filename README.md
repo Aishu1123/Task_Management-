@@ -139,9 +139,6 @@ To access protected routes, users need to register and log in. Authentication is
 
 The API handles errors gracefully and returns appropriate HTTP status codes and error messages.
 
-## Authentication and Authorization
-
-Authentication is required for accessing certain endpoints. Unauthorized access will result in a 401 status code.
 
 
 
